@@ -5,7 +5,12 @@
   any_errors_fatal: true
 
   tasks:
-    - name: "Mock verification task"
-      changed_when: false
+    
+    - name: "task1"
       ansible.builtin.command:
-        cmd: "true"
+        cmd: "fsck -N /dev/sda"
+      register: cmd1
+
+    - debug:
+        var: cmd1
+
