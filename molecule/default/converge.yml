@@ -2,4 +2,7 @@
 - name: Converge
   hosts: all
   roles:
-    - role: genlab.template
+    - role: genlab.mkfs
+      mkfs_device: "/dev/sda"
+      mkfs_type: ext4
+      mkfs_state: present
