@@ -6,11 +6,19 @@
 
   tasks:
     
-    - name: "task1"
-      ansible.builtin.command:
-        cmd: "fsck -N /dev/sda"
-      register: cmd1
+    - name: Attach the file to a loop device
+      command: losetup /dev/loop3 /tmp/test_file
+      register: loop_device
 
-    - debug:
-        var: cmd1
+    - name: Verify the filesystem type
+      command: blkid /dev/loop3
+      register: blkid_output
 
+    - name: Ensure filesystem is ext3
+      assert:
+        that:
+          - "'TYPE=\"ext3\"' in blkid_output.stdout"
+
+    - name: Detach the loop device
+      command: losetup -d /dev/loop3
+      ignore_errors: yes
