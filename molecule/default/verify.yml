@@ -5,20 +5,16 @@
   any_errors_fatal: true
 
   tasks:
-    
-    - name: Attach the file to a loop device
-      command: losetup /dev/loop3 /tmp/test_file
+
+    - name: "Attach the file to a loop device"
+      ansible.builtin.command: losetup /dev/loop3 /tmp/test_file
       register: loop_device
 
-    - name: Verify the filesystem type
-      command: blkid /dev/loop3
+    - name: "Verify the filesystem type"
+      ansible.builtin.command: blkid /dev/loop3
       register: blkid_output
 
-    - name: Ensure filesystem is ext3
-      assert:
+    - name: "Ensure filesystem is ext3"
+      ansible.builtin.assert:
         that:
           - "'TYPE=\"ext3\"' in blkid_output.stdout"
-
-    - name: Detach the loop device
-      command: losetup -d /dev/loop3
-      ignore_errors: yes
