@@ -13,7 +13,7 @@
       ansible.builtin.command: dd if=/dev/zero of=/tmp/test_file bs=1000000 count=100
       when: not disk_file.stat.exists
       register: dd_output
-      changed_when: dd_output.rc != 0 
+      changed_when: dd_output.rc != 0
 
   roles:
     - role: genlab.mkfs
