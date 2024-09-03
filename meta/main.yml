@@ -1,17 +1,17 @@
 ---
 galaxy_info:
-  role_name: "template"
-  namespace: genlab
+  role_name: "mkfs"
   author: "Alexander Gorelyshev"
   company: "Genlab, LLC"
-  description: ""
-  license: "MIT"
+  namespace: genlab
+  description: "Create a filesystem on a target device"
+  license: "GPL-2.0-or-later"
   min_ansible_version: "2.1"
 
   platforms:
     - name: "Ubuntu"
-      versions: [ "focal", "jammy" ]
+      versions: [ "focal" ]
 
-  galaxy_tags: [ ]
+  galaxy_tags: []
 
 dependencies: []

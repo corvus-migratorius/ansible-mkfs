@@ -1,4 +1,9 @@
 ---
-- name: "Mock task"
-  ansible.builtin.debug:
-    msg: "hello, world!"
+# tasks file for mkfs
+- name: "Create a filesystem on the given device"
+  community.general.filesystem:
+    fstype: "{{ mkfs_type }}"
+    dev: "{{ mkfs_device }}"
+    state: "{{ mkfs_state }}"
+    opts: "{{ mkfs_opts }}"
+    force: "{{ mkfs_force }}"
